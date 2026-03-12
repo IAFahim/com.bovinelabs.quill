@@ -2,7 +2,7 @@
 //     Copyright (c) BovineLabs. All rights reserved.
 // </copyright>
 
-#if UNITY_EDITOR || !APP_UI_EDITOR_ONLY
+#if (UNITY_EDITOR || !APP_UI_EDITOR_ONLY) && UNITY_APPUI
 namespace BovineLabs.Quill.Debug
 {
     using System;
@@ -18,7 +18,7 @@ namespace BovineLabs.Quill.Debug
     using UnityEngine;
 
     [Serializable]
-    public partial class DrawToolbarViewModel : SystemObservableObject<DrawToolbarViewModel.Data>, IInitializable, IDisposable, ISerializationCallbackReceiver
+    public partial class DrawToolbarViewModel : SystemObservableObject<DrawToolbarViewModel.Data>, ILoadable, ISerializationCallbackReceiver
     {
         [SerializeField]
         private List<string> categorySave = new();
@@ -92,13 +92,13 @@ namespace BovineLabs.Quill.Debug
         }
 
         /// <inheritdoc/>
-        void IInitializable.Initialize()
+        void ILoadable.Load()
         {
             this.Value.Initialize();
         }
 
         /// <inheritdoc/>
-        void IDisposable.Dispose()
+        void ILoadable.Unload()
         {
             this.Value.Dispose();
         }
@@ -212,9 +212,7 @@ namespace BovineLabs.Quill.Debug
         public partial struct Data
         {
             [SystemProperty]
-            private Changed<bool> enabled;
-
-            [SystemProperty]
+            private Changed<bool> enabled;[SystemProperty]
             private NativeList<FixedString32Bytes> categories;
 
             [SystemProperty]
@@ -244,5 +242,4 @@ namespace BovineLabs.Quill.Debug
         }
     }
 }
-
 #endif

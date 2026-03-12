@@ -1,13 +1,13 @@
 {
     "name": "BovineLabs.Quill.Debug",
     "rootNamespace": "",
-    "references": [
+    "references":[
         "BovineLabs.Anchor",
+        "BovineLabs.Anchor.Debug",
         "BovineLabs.Core",
         "BovineLabs.Core.Extensions",
         "BovineLabs.Core.Extensions.Debug",
         "BovineLabs.Quill",
-        "Unity.AppUI.MVVM",
         "Unity.AppUI",
         "Unity.Burst",
         "Unity.Collections",
@@ -23,16 +23,16 @@
         "Unity.Transforms"
     ],
     "includePlatforms": [],
-    "excludePlatforms": [],
+    "excludePlatforms":[],
     "allowUnsafeCode": true,
     "overrideReferences": false,
-    "precompiledReferences": [],
+    "precompiledReferences":[],
     "autoReferenced": false,
-    "defineConstraints": [
+    "defineConstraints":[
         "UNITY_EDITOR || BL_DEBUG",
         "BL_ANCHOR"
     ],
-    "versionDefines": [
+    "versionDefines":[
         {
             "name": "com.bovinelabs.anchor",
             "expression": "",
@@ -42,6 +42,11 @@
             "name": "com.unity.physics",
             "expression": "",
             "define": "UNITY_PHYSICS"
+        },
+        {
+            "name": "com.unity.dt.app-ui",
+            "expression": "",
+            "define": "UNITY_APPUI"
         }
     ],
     "noEngineReferences": false

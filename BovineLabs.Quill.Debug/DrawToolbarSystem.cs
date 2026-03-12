@@ -2,14 +2,12 @@
 //     Copyright (c) BovineLabs. All rights reserved.
 // </copyright>
 
-#if UNITY_EDITOR || !APP_UI_EDITOR_ONLY
+#if (UNITY_EDITOR || !APP_UI_EDITOR_ONLY) && UNITY_APPUI
 namespace BovineLabs.Quill.Debug
 {
-    using BovineLabs.Anchor.Toolbar;
+    using BovineLabs.Anchor.Debug.Toolbar;
     using Unity.Burst;
-    using Unity.Entities;
-
-    [UpdateInGroup(typeof(ToolbarSystemGroup))]
+    using Unity.Entities;[UpdateInGroup(typeof(ToolbarSystemGroup))]
     public partial struct DrawToolbarSystem : ISystem, ISystemStartStop
     {
         private ToolbarHelper<DrawToolbarView, DrawToolbarViewModel, DrawToolbarViewModel.Data> toolbar;

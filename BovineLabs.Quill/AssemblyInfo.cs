@@ -3,5 +3,7 @@
 // </copyright>
 
 using System.Runtime.CompilerServices;
+using Unity.Entities;
 
 [assembly: InternalsVisibleTo("BovineLabs.Quill.Debug")]
+[assembly: RegisterUnityEngineComponentType(typeof(UnityEngine.Camera))]

@@ -2,7 +2,7 @@
 //     Copyright (c) BovineLabs. All rights reserved.
 // </copyright>
 
-#if UNITY_EDITOR || !APP_UI_EDITOR_ONLY
+#if (UNITY_EDITOR || !APP_UI_EDITOR_ONLY) && UNITY_APPUI
 namespace BovineLabs.Quill.Debug
 {
     using System.Collections.Generic;
