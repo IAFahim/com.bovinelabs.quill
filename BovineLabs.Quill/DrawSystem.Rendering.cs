@@ -347,7 +347,7 @@ namespace BovineLabs.Quill
                 public Stream(int requiredElements)
                 {
                     var newCapacity = math.max(requiredElements, this.capacity > 0 ? (int)math.ceil(this.capacity * 1.5f) : 256);
-                    this.dest = new GraphicsBuffer(GraphicsBuffer.Target.Structured, newCapacity, this.stride);
+                    this.dest = new GraphicsBuffer(GraphicsBuffer.Target.Structured | GraphicsBuffer.Target.Raw, newCapacity, this.stride);
                     this.uploader = new SparseUploader(this.dest, BufferChunkSize);
                     this.capacity = newCapacity;
                 }
@@ -358,7 +358,7 @@ namespace BovineLabs.Quill
                     {
                         var newCapacity = math.max(requiredElements, this.capacity > 0 ? (int)math.ceil(this.capacity * 1.5f) : 256);
                         var oldBuffer = this.dest;
-                        var newBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured, newCapacity, this.stride);
+                        var newBuffer = new GraphicsBuffer(GraphicsBuffer.Target.Structured | GraphicsBuffer.Target.Raw, newCapacity, this.stride);
 
                         this.uploader.ReplaceBuffer(newBuffer);
 
