@@ -75,8 +75,6 @@ public partial struct TestSystem : ISystem
     {
         var drawer = SystemAPI.GetSingleton<DrawSystem.Singleton>().CreateDrawer<TestSystem>();
 
-        // Optional, but lets you early out if this drawer isn't currently enabled.
-        // This allows you to avoid scheduling jobs and writing draw data that will be discarded anyway.
         if (!drawer.IsEnabled)
         {
             return;
@@ -93,6 +91,31 @@ public partial struct TestSystem : ISystem
         private void Execute(Entity entity, in LocalTransform lt)
         {
             this.Drawer.Text128(lt.Position, entity.ToFixedString(), Color.red);
+        }
+    }
+}
+```
+
+### Example: draw entity position
+
+```csharp
+public partial struct DrawEntityPositionSystem : ISystem
+{
+    public void OnUpdate(ref SystemState state)
+    {
+        var drawer = SystemAPI.GetSingleton<DrawSystem.Singleton>().CreateDrawer<DrawEntityPositionSystem>();
+
+        if (!drawer.IsEnabled)
+        {
+            return;
+        }
+
+        foreach (var localTransform in SystemAPI.Query<RefRO<LocalTransform>>())
+        {
+            var position = localTransform.ValueRO.Position;
+            FixedString128Bytes label = $"pos ({position.x:0.00}, {position.y:0.00}, {position.z:0.00})";
+            drawer.Point(position, 0.15f, Color.cyan);
+            drawer.Text128(position + new float3(0f, 1.25f, 0f), label, Color.yellow);
         }
     }
 }
